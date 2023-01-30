@@ -11,7 +11,9 @@ contract Todo {
   mapping(address => todoStruct[]) public todos;
   todoStruct[] updatedTodosList;
 
-  function addTodoStart(string memory _id, string memory _title) public {
+  event TodosUpdate(todoStruct[] currentTodos);
+
+  function addTodo(string memory _id, string memory _title) public {
     delete updatedTodosList;
 
     updatedTodosList.push(todoStruct(_id, false, _title));
@@ -21,6 +23,8 @@ contract Todo {
     }
 
     todos[msg.sender] = updatedTodosList;
+
+    emit TodosUpdate(todos[msg.sender]);
   }
 
   function getTodos() public view returns (todoStruct[] memory) {
@@ -41,6 +45,8 @@ contract Todo {
       todos[msg.sender][i] = todos[msg.sender][i + 1];
     }
     todos[msg.sender].pop();
+
+    emit TodosUpdate(todos[msg.sender]);
   }
 
   function updateTodo(string memory _id) public {
@@ -54,5 +60,7 @@ contract Todo {
     }
 
     todos[msg.sender][idx].done = true;
+
+    emit TodosUpdate(todos[msg.sender]);
   }
 }

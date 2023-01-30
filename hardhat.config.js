@@ -4,7 +4,7 @@ const { mnemonic } = require('./secrets.json');
 
 //npx hardhat run --network chiado scripts/deploy.js
 
-// Todo - 0xFC9f70F206C340E2e78FE4B27C37f0BCC1c36Ea2
+// Todo - 0x3FB57d3759F64ab3EC44b9F71204B1F0FABC25A0
 
 
 
